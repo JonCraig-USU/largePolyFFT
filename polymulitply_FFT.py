@@ -3,6 +3,7 @@ from random import randint
 import time
 from FFT import fft, fftI, getComplex
 
+
 def getV(n):
     return getComplex(n)
 

@@ -1,5 +1,5 @@
 import numpy as np
-from nimTime import showTime
+# from nimTime import showTime
 
 # Create the omega values
 def getComplex(n):
@@ -46,7 +46,7 @@ def runTime(n):
 
 sizes = [2**i for i in range(7, 26)]
 
-showTime(runTime, sizes, fit='polynomial')
+# showTime(runTime, sizes, fit='polynomial')
 
 
 # print("FFT: " + str(fft(p, w, n)))
