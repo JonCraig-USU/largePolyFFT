@@ -71,24 +71,24 @@ Varray = getV(2 * n)
 #         x=dfdfdfdf
 
 # test the time:
-timesFFT = []
-timesPol = []
-for _ in range(3):
-    p = createNum(n)
-    q = createNum(n)
-    tic = time.perf_counter()
-    polyMultiply(p, q, n, Varray)
-    toc = time.perf_counter()
-    timesFFT.append(toc - tic)
-    # convert to python rep without timing
-    pn = convertBack(p)
-    qn = convertBack(q)
-    tic = time.perf_counter()
-    pn * qn
-    toc = time.perf_counter()
-    timesPol.append(toc - tic)
-print("FFT    run time is %f" % np.mean(timesFFT))
-print("Python run time is %f" % np.mean(timesPol))
+# timesFFT = []
+# timesPol = []
+# for _ in range(3):
+#     p = createNum(n)
+#     q = createNum(n)
+#     tic = time.perf_counter()
+#     polyMultiply(p, q, n, Varray)
+#     toc = time.perf_counter()
+#     timesFFT.append(toc - tic)
+#     # convert to python rep without timing
+#     pn = convertBack(p)
+#     qn = convertBack(q)
+#     tic = time.perf_counter()
+#     pn * qn
+#     toc = time.perf_counter()
+#     timesPol.append(toc - tic)
+# print("FFT    run time is %f" % np.mean(timesFFT))
+# print("Python run time is %f" % np.mean(timesPol))
 '''Run Time Comparison:
     FFT: 3.142405
     Python: .077117'''

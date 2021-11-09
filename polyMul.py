@@ -59,3 +59,4 @@ def polySchool(p, q):
         for j in range(len(q)):
             ans[i+j] += p[i] * q[j]
     return ans
+

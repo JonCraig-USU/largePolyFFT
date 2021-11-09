@@ -1,17 +1,32 @@
-import polyMul
-import polymulitply_FFT
+from FFT import getComplex
+from polyMul import poly3, polySchool
+from polymulitply_FFT import polyMultiply, createNum
 import datetime
 import sys
 import matplotlib.pyplot as plt
 from scipy import stats
 import numpy as np
 
+def schoolTime(n):
+    a = createNum(n)
+    b = createNum(n)
+    polySchool(a, b)
+
+def poly3Time(n):
+    a = createNum(n)
+    b = createNum(n)
+    poly3(a, b)
+
+def fftTime(n):
+    a = createNum(n)
+    b = createNum(n)
+    polyMultiply(a, b, n, getComplex(n*2))
 
 empTL = []
 empS = []
 for n in [2**5, 2**6, 2**7, 2**8]:
     startTime = datetime.datetime.now()
-    polyMul.polySchool(n)
+    schoolTime(n)
     endTime = datetime.datetime.now()
     time_diff = (endTime - startTime)
     elapsed = time_diff.total_seconds() * 1000
@@ -23,7 +38,7 @@ poly3TL = []
 poly3S = []
 for n in [2**6, 2**7, 2**8, 2**9]:
     startTime = datetime.datetime.now()
-    polyMul.poly3(n)
+    poly3Time(n)
     endTime = datetime.datetime.now()
     time_diff = (endTime - startTime)
     elapsed = time_diff.total_seconds() * 1000
@@ -36,7 +51,7 @@ fftS = []
 sizes = [2**i for i in range(7, 26)]
 for n in sizes:
     startTime = datetime.datetime.now()
-    polymulitply_FFT.polyMultiply(n)
+    fftTime(n)
     endTime = datetime.datetime.now()
     time_diff = (endTime - startTime)
     elapsed = time_diff.total_seconds() * 1000
