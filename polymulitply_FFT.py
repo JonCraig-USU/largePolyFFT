@@ -8,18 +8,27 @@ def getV(n):
     return getComplex(n)
 
 def polyMultiply(p, q, n, Varray):
+    # pad the 2 numbers with n 0's
     p += [0 for _ in range(n)]
     q += [0 for _ in range(n)]
+
+    # run the 2 'new' numbers through original FFT
     s0 = fft(p, Varray, 2*n)
     s1 = fft(q, Varray, 2*n)
+
+    # Multiply the parts to get the new number
     s = [s0[i]*s1[i] for i in range(2*n)]
-    # I believe here is where we do the inverse and extract the
-    # real integers, then pass that back to be converted
+
+    # run the new number through FFT^-1
     interpolate = fftI(s, [], 2*n)
+    # extract real number
     realNum = [x.real for x in interpolate]
+    # return the rounded number
     return [round(i) for i in realNum]
     
-print(polyMultiply([1, 2], [2, 1], 2, getV(4)))
+# Note that the rounded number is not in simplified base 10
+# to see the correctly formatted base 10 would need to carry
+# the 10's and above
 
 Base = 2**11
 def convertBack(digits, base = Base):
@@ -35,21 +44,21 @@ def convertBack(digits, base = Base):
 def createNum(n):
     return [randint(0,Base-1) for _ in range(n)]
 
-# #Test that they find the same answer
-# n=2**16
+#Test that they find the same answer
+n=2**16
 
-# Varray = getV(2 * n)
-# for _ in range(1):
-#     p = createNum(n)
-#     q = createNum(n)
-#     pq = polyMultiply(p, q, n, Varray)
-#     fftAns = convertBack(pq)
-#     pythAns = convertBack(p)*convertBack(q)
-#     print("FFT answer is    %d" % fftAns)
-#     print("Python answer is %d" % pythAns)
-#     if not fftAns == pythAns:
-#         print("ERROR")
-#         x=dfdfdfdf
+Varray = getV(2 * n)
+for _ in range(1):
+    p = createNum(n)
+    q = createNum(n)
+    pq = polyMultiply(p, q, n, Varray)
+    fftAns = convertBack(pq)
+    pythAns = convertBack(p)*convertBack(q)
+    print("FFT answer is    %d" % fftAns)
+    print("Python answer is %d" % pythAns)
+    if not fftAns == pythAns:
+        print("ERROR")
+        x=dfdfdfdf
 
 # # test the time:
 # timesFFT = []

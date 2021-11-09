@@ -35,7 +35,7 @@ def fftI(p, w, n):
     if w == []:
         w = [complex(np.cos(2*np.pi * i/n), -np.sin(2*np.pi * i/n)) for i in range(n)]
     sol = fft(p, w, n)
-    return [sol[i] / 8 for i in range(n)]
+    return [sol[i] / n for i in range(n)]
 
 # test the function
 def runTime(n):
